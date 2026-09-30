@@ -69,6 +69,8 @@ beyond Next. Deterministic engine (`src/lib/`) is UI-free and replayable.
 (`video/out/makerheat-demo.mp4`, 1920×1080, voice-over included) using the
 real replay numbers — the JUP depth flip from 52.8%→32.7% top-3 sell share.
 `cd video && npm install && npx remotion render src/index.ts MakerHeatDemo out/makerheat-demo.mp4`
+VO via `scripts/gen-vo-deepgram.py` (Deepgram Aura, needs `DEEPGRAM_API_KEY`
+in env) or `scripts/gen-vo.py` (edge-tts, no key).
 
 ## Docs
 
