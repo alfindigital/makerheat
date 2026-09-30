@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export async function GET(_req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const o = getObservation(id);
+  const o = await getObservation(id);
   if (!o) return new Response("not found", { status: 404 });
   const sm = o.concentration.sell;
   const sc = o.sellContext;

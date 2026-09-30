@@ -48,14 +48,14 @@ Open http://localhost:3000 — three scanner modes:
 Quick scan = 2 pages (~3 credits incl. token meta). Deep = 10 pages.
 Depth curves plot every page boundary.
 
-### Serverless caveats (Vercel deploy)
+### Deployment notes (Vercel)
 
-- `node:sqlite` state lives in `/tmp` per function instance — quota ledger,
-  freshness cache and saved observations are **ephemeral and per-instance**.
-  Permalinks (`/r/<id>`, `/api/card/<id>`) may 404 across instances; migrate
-  the store to Upstash before treating permalinks as durable.
-- Fixture bodies ride inside the deployment bundle (not URL-servable) so
-  public replay works — they remain untracked in git.
+- State backend is env-selected: `UPSTASH_REDIS_REST_URL` + `_TOKEN` → shared
+  Upstash Redis (observations, quota ledger, cache survive across instances —
+  permalinks `/r/<id>` and `/api/card/<id>` are durable); otherwise sqlite.
+- Only the `jup-solana-*` fixture groups ship in the deployment bundle (public
+  replay demo); all other raw capture bodies stay local-only — never in git,
+  never deployed. Bundled bodies are not URL-servable.
 
 ## Modes & honesty rules
 

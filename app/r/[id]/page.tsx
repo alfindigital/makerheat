@@ -10,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ObservationPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const o = getObservation(id);
+  const o = await getObservation(id);
   if (!o) notFound();
   return (
     <main className="mx-auto max-w-4xl px-4 pb-16 pt-6 sm:px-6">

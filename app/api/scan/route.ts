@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
     }
     try {
       const observation = replayGroup(FIXTURES, body.replay);
-      saveObservation(observation);
+      await saveObservation(observation);
       return NextResponse.json({ observation, meta: { cached: false, creditsUsed: 0, mode: "replay" } });
     } catch (e) {
       return NextResponse.json({ error: `replay failed: ${String(e)}` }, { status: 500 });
@@ -72,22 +72,22 @@ export async function POST(req: NextRequest) {
   }
 
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
-  if (ipCountInLast(ip, 60_000) >= PER_IP_PER_MIN) {
+  if (await ipCountInLast(ip, 60_000) >= PER_IP_PER_MIN) {
     return NextResponse.json({ error: "rate limited — per-IP cap reached" }, { status: 429 });
   }
-  if (globalCreditsInLast(86_400_000) >= GLOBAL_BUDGET) {
+  if (await globalCreditsInLast(86_400_000) >= GLOBAL_BUDGET) {
     return NextResponse.json({ error: "daily credit budget exhausted — replay still available", replayAvailable: replayGroups() }, { status: 429 });
   }
 
   const maxPages = TIERS[tier];
   const key = cacheKey(chain, address, tier);
 
-  const cached = cacheGet(key, CACHE_TTL);
+  const cached = await cacheGet(key, CACHE_TTL);
   if (cached) {
     return NextResponse.json({ observation: cached, meta: { cached: true, creditsUsed: 0, mode: "live" } });
   }
 
-  const attemptRow = recordAttempt(ip, key);
+  const attempt = await recordAttempt(ip, key);
   try {
     const { observation, creditsUsed } = await singleFlight(key, async () => {
       const r = await collect({ chain, address, maxPages, deadlineMs: DEADLINE_MS, endTimeMs: Date.now() });
@@ -101,9 +101,9 @@ export async function POST(req: NextRequest) {
         if (breadth) r.observation.breadth = breadth;
         r.creditsUsed += meta.receipt.credits ?? 0;
       }
-      saveObservation(r.observation);
-      cachePut(key, r.observation.id);
-      recordCredits(attemptRow, r.creditsUsed);
+      await saveObservation(r.observation);
+      await cachePut(key, r.observation.id);
+      await recordCredits(attempt, r.creditsUsed);
       return r;
     });
     return NextResponse.json({ observation, meta: { cached: false, creditsUsed, mode: "live" } });
@@ -119,6 +119,6 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   const id = req.nextUrl.searchParams.get("id");
   if (!id) return NextResponse.json({ error: "id required" }, { status: 400 });
-  const o: Observation | null = getObservation(id);
+  const o: Observation | null = await getObservation(id);
   return o ? NextResponse.json({ observation: o }) : NextResponse.json({ error: "not found" }, { status: 404 });
 }
