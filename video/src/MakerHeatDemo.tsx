@@ -122,18 +122,19 @@ const DepthCurve: React.FC<{ frame: number; startAt: number; points: { ev: numbe
     );
   };
 
-// VO timing (30fps) — re-probed from real audio durations:
-// s0 6.7s · s1 10.2s · s2 10.0s · s3 18.0s · s4 13.2s · s5 8.9s
-const VO = [
-  { file: "vo-s0.mp3", from: 10 },
-  { file: "vo-s1.mp3", from: 250 },
-  { file: "vo-s2.mp3", from: 700 },
-  { file: "vo-s3.mp3", from: 1000 },
-  { file: "vo-s4.mp3", from: 1660 },
-  { file: "vo-s5.mp3", from: 2160 },
+// VO timing (30fps) — re-probed from real audio durations.
+// voPrefix picks the voice set: "vo-" = Deepgram Aura, "vo-mf-" = edge-tts
+// two-voice (male s0-s2 / female s3-s5), "vo-el-" = ElevenLabs (if generated).
+const voTrack = (prefix: string) => [
+  { file: `${prefix}s0.mp3`, from: 10 },
+  { file: `${prefix}s1.mp3`, from: 250 },
+  { file: `${prefix}s2.mp3`, from: 700 },
+  { file: `${prefix}s3.mp3`, from: 1000 },
+  { file: `${prefix}s4.mp3`, from: 1660 },
+  { file: `${prefix}s5.mp3`, from: 2160 },
 ];
 
-export const MakerHeatDemo: React.FC = () => {
+export const MakerHeatDemo: React.FC<{ voPrefix?: string }> = ({ voPrefix = "vo-" }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const flipAt = 1180;
@@ -155,7 +156,7 @@ export const MakerHeatDemo: React.FC = () => {
 
   return (
     <AbsoluteFill style={{ background: C.paper, color: C.ink, fontFamily: FONT_DATA }}>
-      {VO.map((v) => (
+      {voTrack(voPrefix).map((v) => (
         <Sequence key={v.file} from={v.from}>
           <Audio src={staticFile(v.file)} />
         </Sequence>
