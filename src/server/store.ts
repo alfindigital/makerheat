@@ -9,7 +9,9 @@ import { existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import type { Observation } from "../types";
 
-const DATA_DIR = path.resolve(process.cwd(), "data");
+const DATA_DIR = process.env.MAKERHEAT_DATA_DIR
+  ? path.resolve(process.env.MAKERHEAT_DATA_DIR)
+  : path.resolve(process.env.VERCEL ? "/tmp/makerheat" : process.cwd(), "data");
 const DB_PATH = path.join(DATA_DIR, "makerheat.db");
 
 let _db: DatabaseSync | null = null;

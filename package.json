@@ -4,7 +4,7 @@
   "description": "MakerHeat — see who supplied the observed sell volume, and how much the sample can explain.",
   "type": "module",
   "engines": {
-    "node": ">=22.5"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "next dev",

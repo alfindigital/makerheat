@@ -8,6 +8,7 @@
 // capturedAt (freshness is never faked).
 
 import { NextRequest, NextResponse } from "next/server";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { collect, fetchTokenMeta } from "@/server/collector";
 import { parseBreadth } from "@/lib/breadth";
@@ -30,7 +31,10 @@ const TIERS = { quick: QUICK_PAGES, deep: DEEP_PAGES } as const;
 
 function replayGroups(): string[] {
   try {
-    return [...new Set(loadManifest(FIXTURES).map((f) => f.group).filter(Boolean))] as string[];
+    // Only offer groups whose first page body is present — manifest may be
+    // shipped without raw bodies (serverless deploys keep them private).
+    const present = loadManifest(FIXTURES).filter((f) => f.group && existsSync(path.join(FIXTURES, f.file)));
+    return [...new Set(present.map((f) => f.group))] as string[];
   } catch {
     return [];
   }
