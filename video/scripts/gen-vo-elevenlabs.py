@@ -6,7 +6,7 @@
 import json, os, sys, urllib.request
 
 BASE = os.path.join(os.path.dirname(__file__), "..", "public")
-MODEL = "eleven_turbo_v2_5"
+MODEL = os.environ.get("EL_MODEL", "eleven_v3")
 VOICES = {
     "male": "pNInz6obpgDQGcFmaJgB",    # Adam — deep narrator
     "female": "EXAVITQu4vr4xnSDxMaL",  # Sarah — clear, measured

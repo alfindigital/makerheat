@@ -22,5 +22,14 @@ export const MakerHeatRoot: React.FC = () => (
       height={1080}
       defaultProps={{ voPrefix: "vo-mf-" }}
     />
+    <Composition
+      id="MakerHeatDemoEL"
+      component={MakerHeatDemo}
+      durationInFrames={2520}
+      fps={30}
+      width={1920}
+      height={1080}
+      defaultProps={{ voPrefix: "vo-el-" }}
+    />
   </>
 );
