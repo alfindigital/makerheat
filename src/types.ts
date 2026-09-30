@@ -136,6 +136,28 @@ export interface ObservationQuality {
   sourceSkewMs: number | null;
 }
 
+export interface BreadthWindow {
+  tp: string;                       // provider window label ("5m","1h",…)
+  uniqueTraders: number | null;     // ut
+  uniqueBuyers: number | null;      // but
+  uniqueSellers: number | null;     // sut
+  invariantOk: boolean;             // max(but,sut) ≤ ut ≤ but+sut
+  overlapAddresses: number | null;  // but+sut−ut when invariantOk else null
+  buyCount: number | null;          // nb
+  sellCount: number | null;         // ns
+  buyUsd: number | null;            // bvu
+  sellUsd: number | null;           // svu
+  priceChange: number | null;       // pc
+}
+
+export interface BreadthContext {
+  capturedAt: string;
+  sourceEndpoint: string;
+  windows: BreadthWindow[];
+  holdersRaw: string | null;        // hld — zero-unverified, shown as such
+  note: string;
+}
+
 export interface Observation {
   schemaVersion: "1.0.0";
   id: string;
@@ -153,4 +175,5 @@ export interface Observation {
   methodVersion: string;
   parserVersion: string;
   notes: string[];
+  breadth?: BreadthContext;         // separate provider aggregate — own timestamp
 }
