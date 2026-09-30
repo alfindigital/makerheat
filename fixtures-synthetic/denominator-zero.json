@@ -1,0 +1,53 @@
+{
+  "synthetic": true,
+  "note": "sells exist but every USD is null -> shares must be unavailable, not 0%",
+  "data": {
+    "swaps": [
+      {
+        "ts": "1790778159000",
+        "tp": "sell",
+        "t0a": "T0",
+        "t1a": "T1",
+        "t0s": "X",
+        "t1s": "USDC",
+        "eid": 1,
+        "en": "Dex",
+        "f": "FAC",
+        "a0": 1,
+        "a1": 1,
+        "t0pu": 1,
+        "t1pu": 1,
+        "q": 1,
+        "v": null,
+        "ma": "S1",
+        "ex": "x",
+        "tx": "TX1",
+        "h": "100",
+        "lgid": "0"
+      },
+      {
+        "ts": "1790778158000",
+        "tp": "sell",
+        "t0a": "T0",
+        "t1a": "T1",
+        "t0s": "X",
+        "t1s": "USDC",
+        "eid": 1,
+        "en": "Dex",
+        "f": "FAC",
+        "a0": 1,
+        "a1": 1,
+        "t0pu": 1,
+        "t1pu": 1,
+        "q": 1,
+        "v": null,
+        "ma": "S2",
+        "ex": "x",
+        "tx": "TX2",
+        "h": "100",
+        "lgid": "0"
+      }
+    ],
+    "lastId": null
+  }
+}

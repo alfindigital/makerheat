@@ -1,0 +1,31 @@
+{
+  "synthetic": true,
+  "note": "one event -> share 100% of its side; other side unavailable",
+  "data": {
+    "swaps": [
+      {
+        "ts": "1790778159000",
+        "tp": "sell",
+        "t0a": "T0",
+        "t1a": "T1",
+        "t0s": "X",
+        "t1s": "USDC",
+        "eid": 1,
+        "en": "Dex",
+        "f": "FAC",
+        "a0": 1,
+        "a1": 1,
+        "t0pu": 1,
+        "t1pu": 1,
+        "q": 1,
+        "v": 250,
+        "ma": "ONLY",
+        "ex": "x",
+        "tx": "TX1",
+        "h": "100",
+        "lgid": "0"
+      }
+    ],
+    "lastId": null
+  }
+}
