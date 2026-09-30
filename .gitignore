@@ -1,0 +1,21 @@
+node_modules/
+.next/
+dist/
+coverage/
+*.log
+.DS_Store
+.vercel
+
+# secrets — never tracked (.env.example stays visible)
+.env
+.env.local
+.env.*.local
+
+# real provider captures: raw CMC response bodies stay local/internal.
+# Only fixtures/manifest.json (sha256 + metadata) is committed.
+fixtures/*
+!fixtures/manifest.json
+!fixtures/README.md
+
+# local runtime data (sqlite, cached bodies)
+data/

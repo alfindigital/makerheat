@@ -1,0 +1,35 @@
+{
+  "name": "makerheat",
+  "version": "0.1.0",
+  "description": "MakerHeat — see who supplied the observed sell volume, and how much the sample can explain.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "capture": "node tools/capture-fixtures.mjs",
+    "verify:fixtures": "node tools/verify-fixtures.mjs",
+    "verify:engine": "node tools/verify-engine.mjs",
+    "scan:vocab": "node tools/scan-vocab.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.26",
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.1.13",
+    "@types/node": "24.5.2",
+    "@types/react": "19.1.13",
+    "@types/react-dom": "19.1.9",
+    "tailwindcss": "4.1.13",
+    "tsx": "4.20.5",
+    "typescript": "5.9.2",
+    "vitest": "3.2.4"
+  }
+}
