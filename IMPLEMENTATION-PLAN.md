@@ -1,7 +1,23 @@
 # MakerHeat — Implementation Plan (gabungan MakerHeat + GhostTape)
 
-Tanggal: 30 September 2026 (WIB). Status: **task-level plan; belum ada kode**.
+Tanggal: 30 September 2026 (WIB).
 Spec kanonik: [`ideas/MakerHeat-GhostTape-concept.md`](../ideas/MakerHeat-GhostTape-concept.md) — dokumen ini tidak mengulang argumennya, hanya memecahnya jadi urutan kerja.
+
+> **STATUS 2026-09-30 23:30 WIB — Phase 0/A/B/C/D + H SELESAI & TERVERIFY.**
+> Repo publik: https://github.com/alfindigital/makerheat (5 commits, `main`).
+> Verifikasi runtime: live scan 3 chains (Sol/ETH/Base), cache-hit 0 kredit,
+> rate-limit 429 terverifikasi, `MAKERHEAT_LIVE_OFF=1` → 503 + replay tetap jalan,
+> replay deterministik (id `f5bf4d68…` stabil), OG card PNG valid, permalink OK.
+> Golden JUP: engine == independent recompute (1e-9). 17 tests hijau, tsc bersih,
+> vocab scan 35 files/0 hits, secrets scan bersih, raw bodies tidak pernah tracked.
+>
+> **Keputusan D ter-resolve:** D-1 SQLite ledger (Upstash saat multi-instance),
+> D-2 SQLite derived-only, D-3 dua varian dibangun — **menunggu usability gate user**
+> (toggle [Sell|Buy|All], default sell), D-4 live ON, D-5 quick=2/deep=10 cap 30,
+> D-6 Next.js/Vercel-layout.
+>
+> **Deferred sesuai spec:** Phase E (history/persistence), F (komersial),
+> G (AI Jev/DeepSeek). Known gaps di FRICTION.md §Deferred.
 
 ## Prinsip yang tidak bisa ditawar (dari spec — dipegang di setiap task)
 
