@@ -30,6 +30,8 @@ hide this; MakerHeat makes it the product.
 
 ## Quickstart
 
+**Live deployment: https://makerheat.vercel.app** — live scans on, replay groups included in the bundle.
+
 ```bash
 pnpm install
 cp .env.example .env.local   # put CMC_API_KEY=... inside (live mode)
@@ -45,6 +47,15 @@ Open http://localhost:3000 — three scanner modes:
 
 Quick scan = 2 pages (~3 credits incl. token meta). Deep = 10 pages.
 Depth curves plot every page boundary.
+
+### Serverless caveats (Vercel deploy)
+
+- `node:sqlite` state lives in `/tmp` per function instance — quota ledger,
+  freshness cache and saved observations are **ephemeral and per-instance**.
+  Permalinks (`/r/<id>`, `/api/card/<id>`) may 404 across instances; migrate
+  the store to Upstash before treating permalinks as durable.
+- Fixture bodies ride inside the deployment bundle (not URL-servable) so
+  public replay works — they remain untracked in git.
 
 ## Modes & honesty rules
 
