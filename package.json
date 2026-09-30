@@ -14,7 +14,7 @@
     "typecheck": "tsc --noEmit",
     "capture": "node tools/capture-fixtures.mjs",
     "verify:fixtures": "node tools/verify-fixtures.mjs",
-    "verify:engine": "node tools/verify-engine.mjs",
+    "verify:engine": "tsx tools/verify-engine.mts",
     "scan:vocab": "node tools/scan-vocab.mjs"
   },
   "dependencies": {

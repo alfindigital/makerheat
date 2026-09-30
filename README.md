@@ -63,8 +63,17 @@ Depth curves plot every page boundary.
 Next.js 15 · TypeScript · Tailwind · Vitest · `node:sqlite` · zero runtime deps
 beyond Next. Deterministic engine (`src/lib/`) is UI-free and replayable.
 
+## Demo
+
+`video/` is a Remotion project that renders an 84 s explainer
+(`video/out/makerheat-demo.mp4`, 1920×1080, voice-over included) using the
+real replay numbers — the JUP depth flip from 52.8%→32.7% top-3 sell share.
+`cd video && npm install && npx remotion render src/index.ts MakerHeatDemo out/makerheat-demo.mp4`
+
 ## Docs
 
+- `SUBMISSION.md` — hackathon submission sheet + paste-ready description
+- `CAPTIONS.md` — social copy grounded in replayable numbers
 - `docs/METHOD.md` — full computation contract (fields, dedup, stops, math)
 - `docs/CLAIMS.md` — vocabulary policy + forbidden framings
 - `ENDPOINTS.md` — CMC endpoints used, real request/response notes

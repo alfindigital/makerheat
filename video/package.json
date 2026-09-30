@@ -1,0 +1,23 @@
+{
+  "name": "makerheat-video",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "render": "npx remotion render src/index.ts MakerHeatDemo out/makerheat-demo.mp4",
+    "render:still": "npx remotion still src/index.ts MakerHeatDemo out/poster.png --frame=1200",
+    "vo": "python scripts/gen-vo.py"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.529",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.529"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/react": "19.2.7"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}
