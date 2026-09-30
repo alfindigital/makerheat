@@ -1,9 +1,17 @@
-# fixtures/ — real provider captures (INTERNAL ONLY)
+# fixtures/ — real provider captures
 
-Raw CMC API response bodies. **Never committed to git** (see root
-.gitignore) — redistribution rights for raw provider data are not yet
-confirmed. Only `manifest.json` (sha256 + request metadata) and this
-README are tracked.
+Two tiers:
+
+- **Public demo corpus (committed):** `jup-solana-{now,keyless,keyed}-*.json` —
+  real CMC `/v1/dex/tokens/transactions` responses for JUP on Solana. Committed
+  deliberately: they are the hackathon's "visible evidence of a real API call",
+  make replay runnable on any clone and any deploy, and describe data that is
+  public on-chain anyway. Every body is hash-pinned in `manifest.json`.
+- **Bulk corpus (local-only):** all other groups (UNI, VIRTUAL, WIF, BONK, PEPE,
+  CAKE, GMX, FARTCOIN, AERO, TRUMP, SAITAMA…) stay untracked — a broader
+  capture set isn't needed to evaluate the product, and wholesale
+  redistribution of provider bodies is not the goal. Their sha256 + request
+  metadata remain verifiable in `manifest.json`.
 
 To reproduce fixtures on a fresh clone you need a CMC key:
 

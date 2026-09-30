@@ -12,11 +12,15 @@ coverage/
 .env.local
 .env.*.local
 
-# real provider captures: raw CMC response bodies stay local/internal.
-# Only fixtures/manifest.json (sha256 + metadata) is committed.
+# real provider captures: bulk raw CMC bodies stay local/internal.
+# The jup-solana-* groups are the committed public demo corpus —
+# API-call evidence for judges and keyless replay for any clone.
 fixtures/*
 !fixtures/manifest.json
 !fixtures/README.md
+!fixtures/jup-solana-now-*.json
+!fixtures/jup-solana-keyless-*.json
+!fixtures/jup-solana-keyed-*.json
 
 # local runtime data (sqlite, cached bodies)
 data/

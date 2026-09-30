@@ -1,7 +1,9 @@
 # CMC DEX endpoints used
 
 All calls are server-side keyed (`X-CMC_PRO_API_KEY`). Bodies are hashed
-(sha256) into receipts; raw bodies are never stored or served.
+(sha256) into receipts; raw bodies are never served by the app API.
+The committed `fixtures/jup-solana-*` files are the deliberate public corpus —
+API-call evidence for judges and keyless replay for any clone.
 
 ## `GET /v1/dex/tokens/transactions` — the tape
 

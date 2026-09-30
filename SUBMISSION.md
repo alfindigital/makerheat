@@ -60,8 +60,9 @@ keeps replay working).
 - A nested 100→200 comparison is sensitivity, not persistence; real history
   needs separate non-overlapping windows (Phase E).
 - `hld` is zero-unverified in observed data — shown, not trusted.
-- Raw provider bodies are never stored/served publicly (data-rights caution);
-  permalinks carry derived metrics only.
+- Raw provider bodies are never served by the app; permalinks carry derived
+  metrics only. The `fixtures/jup-solana-*` corpus is committed on purpose as
+  the required real-API-call evidence — other bulk captures stay untracked.
 
 ## Demo beats (matches the video)
 

@@ -1,11 +1,2 @@
 # Remotion demo project — deliverable, not part of the web app
 video/
-
-# Fixture corpus: ship only the JUP demo groups for public replay.
-# Other raw capture bodies stay local-only (never in git, never deployed).
-fixtures/*
-!fixtures/manifest.json
-!fixtures/README.md
-!fixtures/jup-solana-now-*.json
-!fixtures/jup-solana-keyless-*.json
-!fixtures/jup-solana-keyed-*.json
